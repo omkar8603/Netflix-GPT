@@ -4,15 +4,14 @@ import bgImg from '../assets/bgImg.jpg'
 import { checkValidData } from '../utils/validate';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase"
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { PHOTOURL } from '../utils/constant';
 
 
 const Login = () => {
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [isSignInFrom, setIsSingInForm] = useState(true);
     const [errorMessage, setErrorMessage] = useState(null);
     
@@ -22,6 +21,7 @@ const Login = () => {
 
     const handleButtonClick = (e) => {
         // Validate the form data 
+ 
         const message = checkValidData(email.current.value, password.current.value);
         setErrorMessage(message);
         if(message) return;
@@ -44,7 +44,7 @@ const Login = () => {
 
         updateProfile(auth.currentUser, {
             displayName: fullNameValue, 
-            photoURL: "https://media.licdn.com/dms/image/v2/D4E03AQH7WG0irumPGg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1715707480465?e=1744848000&v=beta&t=IJz9tW_7EdSBRktWZUkRXMW2S2ZJRMDkwkh0zOZ473w"
+            photoURL: PHOTOURL,
           }).then(() => {
         const {uid, email, displayName, photoURL} = auth.currentUser;
             dispatch(addUser({
@@ -52,7 +52,6 @@ const Login = () => {
              email : email, 
              displayName : displayName , 
              photoURL : photoURL}))
-            navigate("/browse")
           }).catch((error) => {
             setErrorMessage(error)
           });
@@ -68,9 +67,8 @@ const Login = () => {
   
         signInWithEmailAndPassword(auth, emailValue, passwordValue)
           .then((userCredential) => {
-    
-           navigate("/browse")         
-              })
+            const user = userCredential.user;
+                  })
           .catch((error) => {
            const errorCode = error.code;
            const errorMessage = error.message;
