@@ -50,7 +50,7 @@ const Header = () => {
   
 
   return (
-    <div className="absolute px-16 py-2 w-screen  bg-gradient-to-b from-black z-10 flex justify-between" >
+    <div className="absolute px-16 py-2 w-screen  bg-gradient-to-b from-black z-20 flex justify-between" >
       <img className='w-44'
       src={LOGO}
       alt='Logo' />
