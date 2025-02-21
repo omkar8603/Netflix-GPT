@@ -1,12 +1,13 @@
 import React, { useRef, useState } from 'react'
 import Header from './Header'
-import bgImg from '../assets/bgImg.jpg'
 import { checkValidData } from '../utils/validate';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase"
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
 import { PHOTOURL } from '../utils/constant';
+import { BACKGROUND_URL } from "../utils/constant";
+
 
 
 const Login = () => {
@@ -83,11 +84,11 @@ const Login = () => {
     };
      
   return (
-    <div >
+    <div  >
         <Header />
         <div >
-            <img className='absolute'
-             src={bgImg}
+            <img className='absolute w-screen h-screen'
+             src={BACKGROUND_URL}
              alt='backgroundImg' />
          </div>
     

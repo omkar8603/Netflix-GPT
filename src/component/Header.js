@@ -6,13 +6,24 @@ import { removeUser, addUser } from '../utils/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from "firebase/auth";
 import { LOGO } from "../utils/constant"
-
+import { toggleGptSearchView } from "../utils/gptSlice"
+import { SUPPORTED_LANGUAGE } from '../utils/constant';
+import { changeLanguage } from '../utils/configslice';
 
 const Header = () => {
   
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user)
+  const showGptSearch = useSelector(store => store.gpt.showGptSearch);
+
+
+
+ const handleGPTSeachClick = () => {
+   // Toggle the Gpt Search
+   dispatch(toggleGptSearchView());
+  
+ }
 
   const handdleSignOut = () => {
 
@@ -48,7 +59,9 @@ const Header = () => {
       }, [])
   
   
-
+      const handleLanguageChange = (e) => {
+             dispatch(changeLanguage(e.target.value))
+       }
   return (
     <div className="absolute px-16 py-2 w-screen  bg-gradient-to-b from-black z-20 flex justify-between" >
       <img className='w-44'
@@ -57,6 +70,21 @@ const Header = () => {
       {
         user && 
         <div className='flex items-center'>
+         
+         {
+          showGptSearch    && 
+                <select 
+                       className='p-2 m-2 bg-slate-900 text-white'
+                       onChange={handleLanguageChange}>
+                   {
+                   SUPPORTED_LANGUAGE?.map((ln) => ( <option key={ln.identifier} value={ln?.identifier}>{ln?.name}</option> ))
+                    }       
+                </select>
+         }
+
+          <button className='p-2 m-2 bg-orange-700 text-white rounded-lg font-bold'
+          onClick={handleGPTSeachClick}>{showGptSearch ? "HomePage" : "GPT Search"}</button>
+
         <img className="w-12 h-12 p-2 m-2 rounded-lg"
         src={user?.photoURL}
              alt='User Icon' />
