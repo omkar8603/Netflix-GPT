@@ -38,7 +38,15 @@
 - GPT Search Page
 - GPT Search Bar
 - (BONUS) Multi-Language Feature in our App
-
+- integrate GoogleGenerativeAI to Show Search result
+- Setup API Key and all these things
+- Fertched gptMovieSuggestion from TMDB
+- create gptSlice added data
+- Reuse movieLitst component to make movie suggestion cantainer
+- Momoization
+- Added .env file
+- Adding .env file to gitignore
+- Made our Site  Responsive 
  
 
 

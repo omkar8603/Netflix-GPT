@@ -87,12 +87,12 @@ const Login = () => {
     <div  >
         <Header />
         <div >
-            <img className='absolute w-screen h-screen'
+            <img className='absolute w-screen h-screen object-cover'
              src={BACKGROUND_URL}
              alt='backgroundImg' />
          </div>
     
-    <form onSubmit={((e) => e.preventDefault())} className='absolute  w-3/12 bg-black p-12 flex flex-col my-32 mx-auto right-0 left-0 rounded-lg text-white bg-opacity-80'>
+    <form onSubmit={((e) => e.preventDefault())} className='absolute w-[90%] md:w-3/12 bg-black p-12 flex flex-col my-48 md:my-32 mx-auto right-0 left-0 rounded-lg text-white bg-opacity-80'>
          
         <h1 className=' font-bold text-3xl mb-6 '>
             {isSignInFrom? "Sign In" : "Sign Up"}
