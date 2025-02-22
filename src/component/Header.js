@@ -74,7 +74,7 @@ const Header = () => {
          {
           showGptSearch    && 
                 <select 
-                       className='p-2 m-2 bg-slate-900 text-white'
+                       className='p-2 m-2 ml-0 bg-slate-900 text-white'
                        onChange={handleLanguageChange}>
                    {
                    SUPPORTED_LANGUAGE?.map((ln) => ( <option key={ln.identifier} value={ln?.identifier}>{ln?.name}</option> ))
@@ -88,7 +88,7 @@ const Header = () => {
         <img className="hidden md:block w-12 h-12 p-2 m-2 rounded-lg"
         src={user?.photoURL}
              alt='User Icon' />
-             <button className='font-bold text-white p-2 rounded-lg bg-red-600' onClick={handdleSignOut}>Sign Out</button>
+             <button className='font-bold text-white px-2 py-2 m-2  rounded-lg bg-red-600 whitespace-nowrap inline-flex' onClick={handdleSignOut}>Sign Out</button>
          </div>
       }
     </div>
