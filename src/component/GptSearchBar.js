@@ -11,7 +11,8 @@ const GptSearchBar = () => {
   const searchText = useRef(null);
 
   const genAI = new GoogleGenerativeAI(API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+  // const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
   const searchMovieTMDB = async (movie) => {
         const data = await fetch (
@@ -36,7 +37,13 @@ const GptSearchBar = () => {
       const response = await result.response.text();  
 
       // Convert text response into a JSON object
-      const moviesObject = JSON.parse(response); 
+      // const moviesObject = JSON.parse(response); 
+
+      let cleanResponse = response
+      .replace(/```json/g, "")  // Remove starting ```json
+      .replace(/```/g, "");     // Remove ending ```
+
+      const moviesObject = response ? JSON.parse(cleanResponse) : {};
       const gptMovies = moviesObject.movies;
       
       // For each move i will search TMDB API

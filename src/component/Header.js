@@ -69,7 +69,7 @@ const Header = () => {
       alt='Logo' />
       {
         user && 
-        <div className='flex items-center justify-between'>
+        <div className='flex items-center justify-between  '>
          
          {
           showGptSearch    && 
@@ -77,7 +77,7 @@ const Header = () => {
                        className='p-2 m-2 ml-0 bg-slate-900 text-white'
                        onChange={handleLanguageChange}>
                    {
-                   SUPPORTED_LANGUAGE?.map((ln) => ( <option key={ln.identifier} value={ln?.identifier}>{ln?.name}</option> ))
+                   SUPPORTED_LANGUAGE?.map((ln) => ( <option key={ln?.identifier} value={ln?.identifier}>{ln?.name}</option> ))
                     }       
                 </select>
          }
